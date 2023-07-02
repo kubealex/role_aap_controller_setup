@@ -8,7 +8,7 @@
     name: "{{ item.aap2_template_name }}"
     job_type: "run"
     inventory: "{{ item.aap2_template_inventory }}"
-    project: "{{ item.project_name | default('AAP2 Demo', true) }}"
+    project: "{{ item.aap2_template_project | default('AAP2 Demo', true) }}"
     playbook: "{{ item.aap2_template_playbook }}"
     survey_enabled: "{{ item.aap2_template_survey_enabled | default(false, true) }}"
     survey_spec: "{{ item.aap2_template_survey_spec | default(omit, true) }}"
