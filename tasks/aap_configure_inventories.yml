@@ -21,7 +21,7 @@
     overwrite: true
     overwrite_vars: true
     update_on_launch: true
-    credential: "{{ item.aap2_inventory_source_credential }}"
+    credential: "{{ item.aap2_inventory_source_credential | default(omit, true) }}"
     source_path: "{{ item.aap2_inventory_source_path | default(omit, true) }}"
     source_project: "{{ item.aap2_inventory_source_project | default(omit, true) }}"
     source_vars: "{{ item.aap2_inventory_source_vars | default(omit, true) }}"

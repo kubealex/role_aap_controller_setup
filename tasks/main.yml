@@ -10,7 +10,7 @@
 
 - name: Import tasks for project handling
   when: >
-    aap2_projecs is defined and aap2_projects | length > 0
+    aap2_projects is defined and aap2_projects | length > 0
   ansible.builtin.import_tasks:
     file: aap_configure_projects.yml
 
