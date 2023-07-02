@@ -1,0 +1,27 @@
+---
+# tasks file for role_aap_controller_setup
+- name: Import tasks for credential handling
+  when: >
+    (aap2_scm_credentials is defined and aap2_scm_credentials | length > 0) or
+    (aap2_machine_credentials is defined and aap2_machine_credentials | length > 0) or
+    (aap2_cloud_credentials is defined and aap2_cloud_credentials | length > 0)
+  ansible.builtin.import_tasks:
+    file: aap_configure_credentials.yml
+
+- name: Import tasks for project handling
+  when: >
+    aap2_projecs is defined and aap2_projects | length > 0
+  ansible.builtin.import_tasks:
+    file: aap_configure_projects.yml
+
+- name: Import tasks for inventories handling
+  when:
+    - aap2_inventories is defined and aap2_inventories | length > 0
+    - aap2_inventory_sources is defined and aap2_inventory_sources | length > 0
+  ansible.builtin.import_tasks:
+    file: aap_configure_inventories.yml
+
+- name: Import tasks for templates handling
+  when: aap2_templates is defined and aap2_templates | length > 0
+  ansible.builtin.import_tasks:
+    file: aap_configure_templates.yml

@@ -1,0 +1,16 @@
+- name: AAP2 Demo | Create Project
+  ansible.controller.project:
+    controller_host: "{{ aap2_controller_host }}"
+    controller_username: "{{ aap2_controller_username }}"
+    controller_password: "{{ aap2_controller_password }}"
+    organization: "{{ aap2_organization | default('Default', true) }}"
+    validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+    name: "{{ item.name | default('AAP2 Demo', true) }}"
+    scm_update_on_launch: "{{ item.update_on_launch | default(true, true) }}"
+    scm_type: "{{ item.scm_type | default('git', true) }}"
+    scm_branch: "{{ item.scm_branch | default('main', true) }}"
+    scm_url: "{{ item.scm_url }}"
+    scm_credential: "{{ item.scm_credential | default(omit, true) }}"
+    update_project: "{{ item.force_update | default(true, true) }}"
+    default_environment: "{{ item.default_ee | default('Default execution environment', true) }}"
+  loop: "{{ aap2_projects }}"

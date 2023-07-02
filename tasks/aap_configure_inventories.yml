@@ -1,0 +1,39 @@
+- name: AAP2 Demo | Create Inventory
+  ansible.controller.inventory:
+    controller_host: "{{ aap2_controller_host }}"
+    controller_username: "{{ aap2_controller_username }}"
+    controller_password: "{{ aap2_controller_password }}"
+    organization: "{{ aap2_organization | default('Default', true) }}"
+    validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+    name: "{{ item.aap2_inventory_name }}"
+  loop: "{{ aap2_inventories }}"
+
+- name: AAP2 Demo | Create Inventory Sources
+  ansible.controller.inventory_source:
+    controller_host: "{{ aap2_controller_host }}"
+    controller_username: "{{ aap2_controller_username }}"
+    controller_password: "{{ aap2_controller_password }}"
+    organization: "{{ aap2_organization | default('Default', true) }}"
+    validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+    name: "{{ item.aap2_inventory_source_name }}"
+    inventory: "{{ item.aap2_inventory_source_inventory }}"
+    source: "{{ item.aap2_inventory_source_type }}"
+    overwrite: true
+    overwrite_vars: true
+    update_on_launch: true
+    credential: "{{ item.aap2_inventory_source_credential }}"
+    source_path: "{{ item.aap2_inventory_source_path | default(omit, true) }}"
+    source_project: "{{ item.aap2_inventory_source_project | default(omit, true) }}"
+    source_vars: "{{ item.aap2_inventory_source_vars | default(omit, true) }}"
+  loop: "{{ aap2_inventory_sources }}"
+
+- name: AAP2 Demo | Update a single inventory source
+  ansible.controller.inventory_source_update:
+    controller_host: "{{ aap2_controller_host }}"
+    controller_username: "{{ aap2_controller_username }}"
+    controller_password: "{{ aap2_controller_password }}"
+    organization: "{{ aap2_organization | default('Default', true) }}"
+    validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+    name: "{{ item.aap2_inventory_source_name }}"
+    inventory: "{{ item.aap2_inventory_source_inventory }}"
+  loop: "{{ aap2_inventory_sources }}"

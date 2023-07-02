@@ -1,0 +1,18 @@
+- name: AAP2 Demo | Add Templates
+  ansible.controller.job_template:
+    controller_host: "{{ aap2_controller_host }}"
+    controller_username: "{{ aap2_controller_username }}"
+    controller_password: "{{ aap2_controller_password }}"
+    organization: "{{ aap2_organization | default('Default', true) }}"
+    validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+    name: "{{ item.aap2_template_name }}"
+    job_type: "run"
+    inventory: "{{ item.aap2_template_inventory }}"
+    project: "{{ item.project_name | default('AAP2 Demo', true) }}"
+    playbook: "{{ item.aap2_template_playbook }}"
+    survey_enabled: "{{ item.aap2_template_survey_enabled | default(false, true) }}"
+    survey_spec: "{{ item.aap2_template_survey_spec | default(omit, true) }}"
+    credentials: "{{ item.aap2_template_credentials | default(omit, true) }}"
+    ask_variables_on_launch: "{{ item.aap2_template_ask_vars | default(false, true) }}"
+    state: "present"
+  loop: "{{ aap2_templates }}"
