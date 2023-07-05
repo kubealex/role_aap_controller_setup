@@ -4,7 +4,8 @@
   when: >
     (aap2_scm_credentials is defined and aap2_scm_credentials | length > 0) or
     (aap2_machine_credentials is defined and aap2_machine_credentials | length > 0) or
-    (aap2_cloud_credentials is defined and aap2_cloud_credentials | length > 0)
+    (aap2_cloud_credentials is defined and aap2_cloud_credentials | length > 0) or
+    (aap2_custom_credentials is defined and aap2_custom_credentials | length > 0)
   ansible.builtin.import_tasks:
     file: aap_configure_credentials.yml
 
