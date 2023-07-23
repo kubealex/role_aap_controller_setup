@@ -26,3 +26,8 @@
   when: aap2_templates is defined and aap2_templates | length > 0
   ansible.builtin.import_tasks:
     file: aap_configure_templates.yml
+
+- name: Import tasks for templates handling
+  when: aap2_execution_envs is defined and aap2_execution_envs | length > 0
+  ansible.builtin.import_tasks:
+    file: aap_configure_ee.yml

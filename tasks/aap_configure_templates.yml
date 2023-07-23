@@ -1,4 +1,4 @@
-- name: AAP2 Demo | Add Templates
+- name: AAP2 Controller Setup | Add Templates
   when: aap2_templates is defined and aap2_templates | length > 0
   ansible.controller.job_template:
     controller_host: "{{ aap2_controller_host }}"
@@ -9,7 +9,7 @@
     name: "{{ item.aap2_template_name }}"
     job_type: "run"
     inventory: "{{ item.aap2_template_inventory }}"
-    project: "{{ item.aap2_template_project | default('AAP2 Demo', true) }}"
+    project: "{{ item.aap2_template_project | default('AAP2 Controller Setup', true) }}"
     playbook: "{{ item.aap2_template_playbook }}"
     survey_enabled: "{{ item.aap2_template_survey_enabled | default(false, true) }}"
     survey_spec: "{{ item.aap2_template_survey_spec | default(omit, true) }}"

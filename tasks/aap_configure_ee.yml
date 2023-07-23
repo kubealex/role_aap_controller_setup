@@ -1,0 +1,13 @@
+- name: AAP2 Controller Setup | Add Execution environment
+  when: aap2_execution_envs is defined and aap2_execution_envs | length > 0
+  ansible.controller.execution_environment:
+    controller_host: "{{ aap2_controller_host }}"
+    controller_username: "{{ aap2_controller_username }}"
+    controller_password: "{{ aap2_controller_password }}"
+    organization: "{{ aap2_organization | default('Default', true) }}"
+    validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+    name: "{{ item.ee_name }}"
+    credential: "{{ item.ee_credential | default(omit, true) }}"
+    image: "{{ item.ee_image }}"
+    state: "present"
+  loop: "{{ aap2_execution_envs }}"

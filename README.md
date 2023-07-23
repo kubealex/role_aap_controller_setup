@@ -85,7 +85,7 @@ Role Variables
 
 | Name                   | Description                                                              | Mandatory | Defaults |
 |------------------------|--------------------------------------------------------------------------|-----------|----------|
-| name                   | The name of the project.                                                 | ✔️        | "AAP2 Demo" |
+| name                   | The name of the project.                                                 | ✔️        | "AAP2 Controller Setup" |
 | scm_update_on_launch   | Whether to update the project on launch.                                 | ❌        | true     |
 | scm_type               | The type of source control system.                                       | ❌        | git      |
 | scm_branch             | The branch to use in the source control system.                          | ❌        | main     |
@@ -151,7 +151,7 @@ Role Variables
 |------------------------------|-------------------------------------------------------------------------|-----------|----------|
 | aap2_template_name           | The name of the template.                                               | ✔️        |          |
 | aap2_template_inventory      | The inventory associated with the template.                             | ✔️        |          |
-| aap2_template_project        | The project associated with the template.                               | ❌        | AAP2 Demo |
+| aap2_template_project        | The project associated with the template.                               | ❌        | AAP2 Controller Setup |
 | aap2_template_playbook       | The playbook to be executed by the template.                            | ✔️        |          |
 | aap2_template_survey_enabled | Whether the survey is enabled for the template.                         | ❌        | false    |
 | aap2_template_survey_spec    | The specification for the survey.                                       | ❌        |          |

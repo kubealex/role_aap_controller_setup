@@ -1,4 +1,4 @@
-- name: AAP2 Demo | Create Project
+- name: AAP2 Controller Setup | Create Project
   when: aap2_projects is defined and aap2_projects | length > 0
   ansible.controller.project:
     controller_host: "{{ aap2_controller_host }}"
@@ -6,7 +6,7 @@
     controller_password: "{{ aap2_controller_password }}"
     organization: "{{ aap2_organization | default('Default', true) }}"
     validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
-    name: "{{ item.name | default('AAP2 Demo', true) }}"
+    name: "{{ item.name | default('AAP2 Controller Setup', true) }}"
     scm_update_on_launch: "{{ item.update_on_launch | default(true, true) }}"
     scm_type: "{{ item.scm_type | default('git', true) }}"
     scm_branch: "{{ item.scm_branch | default('main', true) }}"
