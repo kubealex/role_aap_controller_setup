@@ -1,4 +1,5 @@
 - name: AAP2 Demo | Create Inventory
+  when: aap2_inventories is defined and aap2_inventories | length > 0
   ansible.controller.inventory:
     controller_host: "{{ aap2_controller_host }}"
     controller_username: "{{ aap2_controller_username }}"
@@ -9,6 +10,7 @@
   loop: "{{ aap2_inventories }}"
 
 - name: AAP2 Demo | Create Inventory Sources
+  when: aap2_inventory_sources is defined and aap2_inventory_sources | length > 0
   ansible.controller.inventory_source:
     controller_host: "{{ aap2_controller_host }}"
     controller_username: "{{ aap2_controller_username }}"
@@ -28,6 +30,7 @@
   loop: "{{ aap2_inventory_sources }}"
 
 - name: AAP2 Demo | Update a single inventory source
+  when: aap2_inventory_sources is defined and aap2_inventory_sources | length > 0
   ansible.controller.inventory_source_update:
     controller_host: "{{ aap2_controller_host }}"
     controller_username: "{{ aap2_controller_username }}"

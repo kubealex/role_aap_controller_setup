@@ -1,4 +1,5 @@
 - name: AAP2 Demo | Add Templates
+  when: aap2_templates is defined and aap2_templates | length > 0
   ansible.controller.job_template:
     controller_host: "{{ aap2_controller_host }}"
     controller_username: "{{ aap2_controller_username }}"

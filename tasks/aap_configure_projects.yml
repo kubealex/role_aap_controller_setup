@@ -1,4 +1,5 @@
 - name: AAP2 Demo | Create Project
+  when: aap2_projects is defined and aap2_projects | length > 0
   ansible.controller.project:
     controller_host: "{{ aap2_controller_host }}"
     controller_username: "{{ aap2_controller_username }}"
