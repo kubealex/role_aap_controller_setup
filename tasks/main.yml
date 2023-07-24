@@ -27,7 +27,7 @@
   ansible.builtin.import_tasks:
     file: aap_configure_templates.yml
 
-- name: Import tasks for templates handling
+- name: Import tasks for EE handling
   when: aap2_execution_envs is defined and aap2_execution_envs | length > 0
   ansible.builtin.import_tasks:
     file: aap_configure_ee.yml
