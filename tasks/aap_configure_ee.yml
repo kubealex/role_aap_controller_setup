@@ -4,7 +4,7 @@
     controller_host: "{{ aap2_controller_host }}"
     controller_username: "{{ aap2_controller_username }}"
     controller_password: "{{ aap2_controller_password }}"
-    organization: "{{ aap2_organization | default('Default', true) }}"
+    organization: "{{ aap2_organization | default('', true) }}"
     validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
     name: "{{ item.ee_name }}"
     credential: "{{ item.ee_credential | default(omit, true) }}"
