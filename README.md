@@ -167,13 +167,12 @@ The role requires the **ansible.controller** collection.
 
 ##### Structure for aap2_workflows
 
-| Name                         | Description                                     | Mandatory | Defaults              |
-| ---------------------------- | ----------------------------------------------- | --------- | --------------------- |
-| aap2_workflow_name           | The name of the workflow.                       | ✔️        |                       |
-| aap2_workflow_project        | The project associated with the workflow.       | ❌        | AAP2 Controller Setup |
-| aap2_workflow_survey_enabled | Whether the survey is enabled for the template. | ❌        | false                 |
-| aap2_workflow_survey_spec    | The specification for the survey.               | ❌        |                       |
-| aap2_workflow_nodes          | Spec of workflow nodes                          | ✔️        |                       |
+| Name                         | Description                                     | Mandatory | Defaults |
+| ---------------------------- | ----------------------------------------------- | --------- | -------- |
+| aap2_workflow_name           | The name of the workflow.                       | ✔️        |          |
+| aap2_workflow_survey_enabled | Whether the survey is enabled for the template. | ❌        | false    |
+| aap2_workflow_survey_spec    | The specification for the survey.               | ❌        |          |
+| aap2_workflow_nodes          | Spec of workflow nodes                          | ✔️        |          |
 
 ##### Structure for aap2_workflow_nodes
 
@@ -233,7 +232,6 @@ Including an example of how to use your role (for instance, with variables passe
 
         aap2_workflows:
           - aap2_workflow_name: "My Workflow"
-            aap2_workflow_project: "My Project"
             aap2_workflow_nodes:
               - node_name: node1
                 nodes_on_success:

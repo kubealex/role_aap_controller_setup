@@ -8,7 +8,6 @@
         controller_password: "{{ aap2_controller_password }}"
         organization: "{{ aap2_organization | default('Default', true) }}"
         validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
-        project: "{{ item.aap2_workflow_project | default('AAP2 Controller Setup', true) }}"
         survey_enabled: "{{ item.aap2_workflow_survey_enabled | default(false, true) }}"
         survey_spec: "{{ item.aap2_workflow_survey_spec | default(omit, true) }}"
         name: "{{ item.aap2_workflow_name }}"
