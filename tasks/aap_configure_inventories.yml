@@ -1,7 +1,7 @@
 - name: AAP2 Controller Setup | Create Inventory
   when: aap2_inventories is defined and aap2_inventories | length > 0
   ansible.controller.inventory:
-    controller_host: "{{ aap2_controller_host }}"
+    controller_host: "{{ aap2_controller_url }}"
     controller_username: "{{ aap2_controller_username }}"
     controller_password: "{{ aap2_controller_password }}"
     organization: "{{ aap2_organization | default('Default', true) }}"
@@ -12,7 +12,7 @@
 - name: AAP2 Controller Setup | Create Inventory Sources
   when: aap2_inventory_sources is defined and aap2_inventory_sources | length > 0
   ansible.controller.inventory_source:
-    controller_host: "{{ aap2_controller_host }}"
+    controller_host: "{{ aap2_controller_url }}"
     controller_username: "{{ aap2_controller_username }}"
     controller_password: "{{ aap2_controller_password }}"
     organization: "{{ aap2_organization | default('Default', true) }}"
@@ -32,7 +32,7 @@
 - name: AAP2 Controller Setup | Update a single inventory source
   when: aap2_inventory_sources is defined and aap2_inventory_sources | length > 0
   ansible.controller.inventory_source_update:
-    controller_host: "{{ aap2_controller_host }}"
+    controller_host: "{{ aap2_controller_url }}"
     controller_username: "{{ aap2_controller_username }}"
     controller_password: "{{ aap2_controller_password }}"
     organization: "{{ aap2_organization | default('Default', true) }}"

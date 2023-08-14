@@ -1,7 +1,7 @@
 - name: AAP2 Controller Setup | Create Project
   when: aap2_projects is defined and aap2_projects | length > 0
   ansible.controller.project:
-    controller_host: "{{ aap2_controller_host }}"
+    controller_host: "{{ aap2_controller_url }}"
     controller_username: "{{ aap2_controller_username }}"
     controller_password: "{{ aap2_controller_password }}"
     organization: "{{ aap2_organization | default('Default', true) }}"

@@ -8,7 +8,6 @@
     (aap2_custom_credentials is defined and aap2_custom_credentials | length > 0) or
     (aap2_container_credentials is defined and aap2_container_credentials | length > 0) or
     (aap2_insights_credentials is defined and aap2_insights_credentials | length > 0)
-
   ansible.builtin.import_tasks:
     file: aap_configure_credentials.yml
 
@@ -34,3 +33,8 @@
   when: aap2_templates is defined and aap2_templates | length > 0
   ansible.builtin.import_tasks:
     file: aap_configure_templates.yml
+
+- name: Import tasks for workflows handling
+  when: aap2_workflows is defined and aap2_workflows | length > 0
+  ansible.builtin.import_tasks:
+    file: aap_configure_workflows.yml

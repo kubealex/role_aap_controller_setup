@@ -1,7 +1,7 @@
 - name: AAP2 Controller Setup | Add Templates
   when: aap2_templates is defined and aap2_templates | length > 0
   ansible.controller.job_template:
-    controller_host: "{{ aap2_controller_host }}"
+    controller_host: "{{ aap2_controller_url }}"
     controller_username: "{{ aap2_controller_username }}"
     controller_password: "{{ aap2_controller_password }}"
     organization: "{{ aap2_organization | default('Default', true) }}"
