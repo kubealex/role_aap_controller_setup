@@ -8,10 +8,10 @@
         controller_password: "{{ aap2_controller_password }}"
         organization: "{{ aap2_organization | default('Default', true) }}"
         validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
-        project: "{{ item.workflow_project | default('AAP2 Controller Setup', true) }}"
-        survey_enabled: "{{ item.workflow_survey_enabled | default(false, true) }}"
-        survey_spec: "{{ item.workflow_survey_spec | default(omit, true) }}"
-        name: "{{ item.workflow_name }}"
+        project: "{{ item.aap2_workflow_project | default('AAP2 Controller Setup', true) }}"
+        survey_enabled: "{{ item.aap2_workflow_survey_enabled | default(false, true) }}"
+        survey_spec: "{{ item.aap2_workflow_survey_spec | default(omit, true) }}"
+        name: "{{ item.aap2_workflow_name }}"
       loop: "{{ aap2_workflows }}"
 
     - name: AAP2 Controller Setup | Create node
@@ -25,7 +25,7 @@
         identifier: "{{ item.1.node_name }}"
         workflow_job_template: "{{ item.0.aap2_workflow_name }}"
         unified_job_template: "{{ item.1.node_job_template }}"
-      loop: "{{ lookup('subelements', aap2_workflows, 'workflow_nodes' ) }}"
+      loop: "{{ lookup('subelements', aap2_workflows, 'aap2_workflow_nodes' ) }}"
 
     - name: AAP2 Controller Setup | Link node
       ansible.controller.workflow_job_template_node:
@@ -40,4 +40,4 @@
         unified_job_template: "{{ item.1.node_job_template }}"
         success_nodes: "{{ item.1.nodes_on_success | default(omit, true) }}"
         failure_nodes: "{{ item.1.nodes_on_fail | default(omit, true) }}"
-      loop: "{{ lookup('subelements', aap2_workflows, 'workflow_nodes' ) }}"
+      loop: "{{ lookup('subelements', aap2_workflows, 'aap2_workflow_nodes' ) }}"
