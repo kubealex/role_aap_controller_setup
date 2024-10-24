@@ -9,5 +9,6 @@
     name: "{{ item.ee_name }}"
     credential: "{{ item.ee_credential | default(omit, true) }}"
     image: "{{ item.ee_image }}"
+    pull: "{{ item.ee_pull_policy | default('always', true) }}"
     state: "present"
   loop: "{{ aap2_execution_envs }}"
