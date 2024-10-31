@@ -14,6 +14,7 @@
       loop: "{{ aap2_workflows }}"
 
     - name: AAP2 Controller Setup | Create node
+      when: not item.1.approval
       ansible.controller.workflow_job_template_node:
         controller_host: "{{ aap2_controller_url }}"
         controller_username: "{{ aap2_controller_username }}"
