@@ -24,7 +24,23 @@
         workflow_job_template: "{{ item.0.aap2_workflow_name }}"
         unified_job_template: "{{ item.1.node_job_template }}"
       loop: "{{ lookup('subelements', aap2_workflows, 'aap2_workflow_nodes' ) }}"
-
+      
+    - name: AAP2 Controller Setup | Add approval node for workflow
+      when: item.1.approval
+      ansible.controller.workflow_job_template_node:
+        controller_host: "{{ aap2_controller_url }}"
+        controller_username: "{{ aap2_controller_username }}"
+        controller_password: "{{ aap2_controller_password }}"
+        organization: "{{ aap2_organization | default('Default', true) }}"
+        validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+        workflow_job_template: "{{ item.0.aap2_workflow_name }}"
+        identifier: "{{ item.1.node_name }}"
+        approval_node:
+          description: "{{ item.1.description }}"
+          name: "{{ item.1.node_name }}"
+          timeout: 3600
+      loop: "{{ lookup('subelements', aap2_workflows, 'aap2_workflow_nodes' ) }}"
+          
     - name: AAP2 Controller Setup | Link node
       ansible.controller.workflow_job_template_node:
         controller_host: "{{ aap2_controller_url }}"
@@ -38,3 +54,5 @@
         success_nodes: "{{ item.1.nodes_on_success | default(omit, true) }}"
         failure_nodes: "{{ item.1.nodes_on_fail | default(omit, true) }}"
       loop: "{{ lookup('subelements', aap2_workflows, 'aap2_workflow_nodes' ) }}"
+
+
