@@ -14,7 +14,7 @@
       loop: "{{ aap2_workflows }}"
 
     - name: AAP2 Controller Setup | Create node
-      when: not item.1.approval
+      when: not item.1.approval | default(true, true)
       ansible.controller.workflow_job_template_node:
         controller_host: "{{ aap2_controller_url }}"
         controller_username: "{{ aap2_controller_username }}"
@@ -27,7 +27,7 @@
       loop: "{{ lookup('subelements', aap2_workflows, 'aap2_workflow_nodes' ) }}"
       
     - name: AAP2 Controller Setup | Add approval node for workflow
-      when: item.1.approval
+      when: item.1.approval | default(false, true)
       ansible.controller.workflow_job_template_node:
         controller_host: "{{ aap2_controller_url }}"
         controller_username: "{{ aap2_controller_username }}"
