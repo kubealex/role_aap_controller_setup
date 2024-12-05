@@ -9,6 +9,31 @@
     name: "{{ item.aap2_inventory_name }}"
   loop: "{{ aap2_inventories }}"
 
+- name: AAP2 Controller Setup | Configure static aap2_inventories
+  when: (aap2_inventory_static_hosts is defined and aap2_inventory_static_hosts ! length > 0) or (aap2_inventory_static_groups is defined and aap2_inventory_static_groups ! length > 0)
+  block:
+    - name: Configure host in static inventory
+      ansible.controller.host:
+        controller_host: "{{ aap2_controller_url }}"
+        controller_username: "{{ aap2_controller_username }}"
+        controller_password: "{{ aap2_controller_password }}"
+        validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+        inventory: "{{ item.inventory }}"
+        name: "{{ item.name }}"
+        enabled: true
+      loop: "{{ aap2_inventory_static_hosts }}"
+
+    - name: Configure host groups in static inentory
+      ansible.controller.host:
+        controller_host: "{{ aap2_controller_url }}"
+        controller_username: "{{ aap2_controller_username }}"
+        controller_password: "{{ aap2_controller_password }}"
+        validate_certs: "{{ aap2_controller_validate_ssl | default(false, true) }}"
+        inventory: "{{ item.inventory }}"
+        name: "{{ item.name }}"
+        hosts: "{{ item.hosts }}"
+      loop: "{{ aap2_inventory_static_groups }}"
+
 - name: AAP2 Controller Setup | Create Inventory Sources
   when: aap2_inventory_sources is defined and aap2_inventory_sources | length > 0
   ansible.controller.inventory_source:
