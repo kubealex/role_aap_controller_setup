@@ -14,6 +14,7 @@
     survey_enabled: "{{ item.aap2_template_survey_enabled | default(false, true) }}"
     survey_spec: "{{ item.aap2_template_survey_spec | default(omit, true) }}"
     credentials: "{{ item.aap2_template_credentials | default(omit, true) }}"
+    extra_vars: "{{  item.aap2_template_extra_vars | default(omit, true) }}"
     ask_variables_on_launch: "{{ item.aap2_template_ask_vars | default(false, true) }}"
     ask_limit_on_launch: "{{ item.aap2_template_ask_limit | default(false, true) }}"
     state: "present"
