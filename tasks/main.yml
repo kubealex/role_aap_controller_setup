@@ -25,7 +25,6 @@
 - name: Import tasks for inventories handling
   when:
     - aap2_inventories is defined and aap2_inventories | length > 0
-    - aap2_inventory_sources is defined and aap2_inventory_sources | length > 0
   ansible.builtin.import_tasks:
     file: aap_configure_inventories.yml
 
