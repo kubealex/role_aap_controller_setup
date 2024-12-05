@@ -10,7 +10,7 @@
   loop: "{{ aap2_inventories }}"
 
 - name: AAP2 Controller Setup | Configure static aap2_inventories
-  when: (aap2_inventory_static_hosts is defined and aap2_inventory_static_hosts | length > 0) or (aap2_inventory_static_groups is defined and aap2_inventory_static_groups |(aap2_inventory_static_hosts is defined and aap2_inventory_static_hosts | length > 0) or (aap2_inventory_static_groups is defined and aap2_inventory_static_groups | length > 0) length > 0)
+  when: (aap2_inventory_static_hosts is defined and aap2_inventory_static_hosts | length > 0) or (aap2_inventory_static_groups is defined and aap2_inventory_static_groups | length > 0)
   block:
     - name: Configure host in static inventory
       ansible.controller.host:
