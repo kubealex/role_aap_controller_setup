@@ -45,9 +45,9 @@
     name: "{{ item.aap2_inventory_source_name }}"
     inventory: "{{ item.aap2_inventory_source_inventory }}"
     source: "{{ item.aap2_inventory_source_type }}"
-    overwrite: true
-    overwrite_vars: true
-    update_on_launch: true
+    overwrite: "{{ item.aap2_inventory_source_overwrite | default(true, true) }}"
+    overwrite_vars: "{{ item.aap2_inventory_source_overwrite_vars | default(true, true) }}"
+    update_on_launch: "{{ item.aap2_inventory_source_update | default(true, true) }}"
     credential: "{{ item.aap2_inventory_source_credential | default(omit, true) }}"
     source_path: "{{ item.aap2_inventory_source_path | default(omit, true) }}"
     source_project: "{{ item.aap2_inventory_source_project | default(omit, true) }}"
